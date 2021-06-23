@@ -1,4 +1,4 @@
-# controle-financeiro
+# Controle de despesas
 Controle financeiro: Inserção e remoção de débitos e saldos
 
 JavaScript puro, aplicação leve
