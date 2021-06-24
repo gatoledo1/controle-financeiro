@@ -82,7 +82,7 @@ h3 {
   color: var(--h2);
   border-bottom: 1px solid var(--h3-border);
   padding-bottom: 10px;
-  margin: 40px 0 10px;
+  margin: 20px 0 10px;
 }
 
 h4 {
@@ -198,11 +198,13 @@ input[type='text']::placeholder, input[type='number']::placeholder {
 }
 
 .transactions li.plus {
-  border-right: 5px solid var(--plus);
+  background: rgb(0 255 34 / 7%);
+  color: #04db5f;
 }
 
 .transactions li.minus {
-  border-right: 5px solid var(--minus);
+  background: rgb(248 37 15 / 7%);
+  color: #e74c3c;
 }
 
 .delete-btn {
