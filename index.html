@@ -13,24 +13,6 @@
 
   <div class="container">
 
-    <div class="inc-exp-container">
-
-      <div>
-        <h4>Receitas</h4>
-        <p id="money-plus" class="money plus">+ R$0.00</p>
-      </div>
-
-      <div>
-        <h4>Despesas</h4>
-        <p id="money-minus" class="money minus">- R$0.00</p>
-      </div>
-
-      <div>
-        <h4>Saldo atual</h4>
-        <h1 id="balance" class="balance">R$ 0.00</h1>
-      </div>
-    </div>
-
     <h3>Transações</h3>
 
     <ul id="transactions" class="transactions"></ul>
@@ -48,14 +30,39 @@
           <small>(- Despesas, + Receitas)</small>
         </label>
         <input type="text" id="amount" placeholder="Valor da transação"
-          oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+          oninput="this.value = this.value.replace(/[^0-9.-]/g, '').replace(/(\..*)\./g, '$1');" />
       </div>
 
       <button class="btn">Adicionar</button>
+
     </form>
+
+    <div class="inc-exp-container">
+      <div>
+        <h4>Receitas</h4>
+        <p id="money-plus" class="money plus">+ R$0.00</p>
+      </div>
+
+      <div>
+        <h4>Despesas</h4>
+        <p id="money-minus" class="money minus">- R$0.00</p>
+      </div>
+
+      <div>
+        <h4>Saldo atual</h4>
+        <h1 id="balance" class="balance">R$ 0.00</h1>
+      </div>
+    </div>
+
+  </div>
+  <div class="container">
+    <h3>Gráfico do saldo</h3>
+    <canvas id="chart" style="width:100%;"></canvas>
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
   <script src="scripts.js"></script>
+
 </body>
 
 </html>

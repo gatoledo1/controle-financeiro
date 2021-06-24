@@ -6,6 +6,7 @@ const form = document.querySelector("#form")
 const inputTransactionName = document.querySelector("#text")
 const inputTransactionAmount = document.querySelector("#amount")
 const body = document.querySelector("body")
+const chart = document.querySelector("#chart")
 
 const localStorageTransactions = JSON.parse(localStorage
   .getItem("transactions"))
@@ -62,12 +63,39 @@ const updateBalanceValues = () => {
   balanceDisplay.textContent = `R$ ${total}`
   incomeDisplay.textContent = `R$ ${income}`
   expenseDisplay.textContent = `R$ ${expense}`
+
+  transactionsUl.scroll({ top: 2000, left: 0, behavior: 'smooth' });
+
+  if (balanceDisplay.textContent == "R$ 0.00" && incomeDisplay.textContent == "R$ 0.00") {
+
+    chart.classList.add("none")
+
+  } else {
+
+    chart.classList.remove("none")
+    let xValues = ["Receita", "Despesas"];
+    let yValues = [income, expense];
+    let barColors = ["#2ecc71", "#e74c3c"];
+
+    new Chart("chart", {
+      type: "pie",
+      data: {
+        labels: xValues,
+        datasets: [{
+          backgroundColor: barColors,
+          data: yValues
+        }]
+      }
+    });
+  }
+
 }
 
 const init = () => {
   transactionsUl.innerHTML = ""
   transactions.forEach(addTransactionIntoDom)
   updateBalanceValues()
+
 }
 
 init()
@@ -111,3 +139,6 @@ const handleFormSubmit = event => {
 }
 
 form.addEventListener("submit", handleFormSubmit)
+
+
+
