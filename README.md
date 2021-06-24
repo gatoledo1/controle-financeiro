@@ -12,7 +12,9 @@ https://s3.amazonaws.com/gonativeio/static/60d33e994aaed24550c7e206/app-release.
 Codepen: https://codepen.io/gatoledo1/pen/jOBjYgp
 
 <div>
-<img src="https://gatoledo.com/controle-financeiro/controle-despesas-light.jpg" width="200" />
+<img src="https://gatoledo.com/controle-financeiro/controle-despesas-light.jpg?v=2406" width="200" />
 &nbsp; &nbsp;
-<img src="https://gatoledo.com/controle-financeiro/controle-despesas-dark.jpg" width="200" />
+<img src="https://gatoledo.com/controle-financeiro/controle-despesas-dark.jpg?v=2406" width="200" />
+  &nbsp; &nbsp;
+<img src="https://gatoledo.com/controle-financeiro/grafico-despesas-dark.jpg?v=2406" width="200" />
 </div>
