@@ -4,12 +4,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./styles.css?v=12345" />
   <title>Controle de despesas</title>
 </head>
 
 <body>
   <h2>Controle de despesas</h2>
+
+  <div class="container">
+    <h3>Gráfico do saldo</h3>
+    <canvas id="chart" style="width:100%;"></canvas>
+  </div>
 
   <div class="container">
 
@@ -27,17 +32,31 @@
 
       <div class="form-control">
         <label for="amount">Valor
-          <small>(- Despesas, + Receitas)</small>
+          <small>(- Despesas, + Receitas)</small><br />
         </label>
         <input type="text" id="amount" placeholder="Valor da transação"
           oninput="this.value = this.value.replace(/[^0-9.-]/g, '').replace(/(\..*)\./g, '$1');" />
+
       </div>
+
+      <small>Poupança conta apenas como saldo e gráfico</small>
+      <div class="form-control">
+        <input type="checkbox" id="isInvestment" value="isInvestment" />
+        <label for="isInvestment" style="font-size: 13px;">Poupança/investimento?</label>
+        <small>use (-) para inserir na poupança a partir do saldo</small>
+      </div>
+
 
       <button class="btn">Adicionar</button>
 
     </form>
 
     <div class="inc-exp-container">
+      <div>
+        <h4>Poupança / Investimentos</h4>
+        <p id="invest" class="money invest">+ R$0.00</p>
+      </div>
+
       <div>
         <h4>Receitas</h4>
         <p id="money-plus" class="money plus">+ R$0.00</p>
@@ -55,13 +74,9 @@
     </div>
 
   </div>
-  <div class="container">
-    <h3>Gráfico do saldo</h3>
-    <canvas id="chart" style="width:100%;"></canvas>
-  </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
-  <script src="scripts.js"></script>
+  <script src="scripts.js?v=0207"></script>
 
 </body>
 
