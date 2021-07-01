@@ -2,9 +2,11 @@ const transactionsUl = document.querySelector("#transactions")
 const incomeDisplay = document.querySelector("#money-plus")
 const expenseDisplay = document.querySelector("#money-minus")
 const balanceDisplay = document.querySelector("#balance")
+const investDisplay = document.querySelector("#invest")
 const form = document.querySelector("#form")
 const inputTransactionName = document.querySelector("#text")
 const inputTransactionAmount = document.querySelector("#amount")
+const inputIsInvestment = document.querySelector("#isInvestment")
 const body = document.querySelector("body")
 const chart = document.querySelector("#chart")
 
@@ -20,9 +22,12 @@ const removeTransaction = ID => {
   init()
 }
 
-const addTransactionIntoDom = ({ amount, name, id }) => {
+const addTransactionIntoDom = ({ amount, name, id, IsInvestment }) => {
+
   const operator = amount < 0 ? "-" : "+"
-  const CSSClass = amount < 0 ? "minus" : "plus"
+  if (IsInvestment == true) var CSSClass = "invest"
+  if (amount > 0 && IsInvestment == false) var CSSClass = "plus"
+  if (amount < 0 && IsInvestment == false) var CSSClass = "minus"
   const amountWithoutOperator = Math.abs(amount)
   const li = document.createElement("li")
 
@@ -37,32 +42,56 @@ const addTransactionIntoDom = ({ amount, name, id }) => {
   transactionsUl.append(li)
 }
 
-const getExpenses = (transactionsAmounts) =>
-  Math.abs(transactionsAmounts
-    .filter(value => value < 0)
-    .reduce((accumulator, value) => accumulator + value, 0))
-    .toFixed(2)
+function getInvests(transactionsIsInvestment, transactionsAmounts) {
+  var investiment = []
+  for (let index = 0; index < transactionsIsInvestment.length; index++) {
+    if (transactionsIsInvestment[index] == true) {
+      investiment = [...investiment, transactionsAmounts[index]]
+    }
+  }
 
-const getIncomes = (transactionsAmounts) =>
-  transactionsAmounts
-    .filter(value => value > 0)
-    .reduce((accumulator, value) => accumulator + value, 0)
+  return investiment.reduce((accumulator, investiment) => accumulator + investiment, 0)
     .toFixed(2)
+}
+
+const getExpenses = (transactionsIsInvestment, transactionsAmounts) => {
+  let expenseT = []
+  for (let index = 0; index < transactionsIsInvestment.length; index++) {
+    if (transactionsIsInvestment[index] == false) {
+      expenseT = [...expenseT, transactionsAmounts[index]]
+    }
+  }
+  return Math.abs(expenseT.filter(value => value < 0).reduce((accumulator, value) => accumulator + value, 0)).toFixed(2)
+
+}
+
+const getIncomes = (transactionsIsInvestment, transactionsAmounts) => {
+  let investiment = transactionsIsInvestment[transactionsIsInvestment.length - 1]
+
+  if (investiment == true) {
+    return transactionsAmounts.filter(value => value > 0).reduce((accumulator) => accumulator).toFixed(2)
+  } else {
+    return transactionsAmounts.filter(value => value > 0).reduce((accumulator, value) => accumulator + value, 0).toFixed(2)
+  }
+
+}
 
 const getTotal = (transactionsAmounts) =>
-  transactionsAmounts
-    .reduce((accumulator, transaction) => accumulator + transaction, 0)
-    .toFixed(2)
+  transactionsAmounts.reduce((accumulator, transaction) => accumulator + transaction, 0).toFixed(2)
+
 
 const updateBalanceValues = () => {
+  const transactionsIsInvestment = transactions.map(({ IsInvestment }) => IsInvestment)
   const transactionsAmounts = transactions.map(({ amount }) => amount)
+  const invest = getInvests(transactionsIsInvestment, transactionsAmounts)
   const total = getTotal(transactionsAmounts)
-  const income = getIncomes(transactionsAmounts)
-  const expense = getExpenses(transactionsAmounts)
+  const income = getIncomes(transactionsIsInvestment, transactionsAmounts)
+  const expense = getExpenses(transactionsIsInvestment, transactionsAmounts)
 
   balanceDisplay.textContent = `R$ ${total}`
   incomeDisplay.textContent = `R$ ${income}`
   expenseDisplay.textContent = `R$ ${expense}`
+  investDisplay.textContent = `R$ ${Math.abs(invest)}`
 
   transactionsUl.scroll({ top: 2000, left: 0, behavior: 'smooth' });
 
@@ -73,12 +102,13 @@ const updateBalanceValues = () => {
   } else {
 
     chart.classList.remove("none")
-    let xValues = ["Receita", "Despesas"];
-    let yValues = [income, expense];
-    let barColors = ["#2ecc71", "#e74c3c"];
+
+    let xValues = ["Receita", "Despesas", "Investimentos"];
+    let yValues = [income, expense, invest];
+    let barColors = ["#2ecc71", "#e74c3c", "#008aff"];
 
     new Chart("chart", {
-      type: "pie",
+      type: "doughnut",
       data: {
         labels: xValues,
         datasets: [{
@@ -106,17 +136,19 @@ const updateLocalStorage = () => {
 
 const generateID = () => Math.round(Math.random() * 1000)
 
-const addToTransactionsArray = (transactionName, transactionAmount) => {
+const addToTransactionsArray = (transactionName, transactionAmount, IsInvestment) => {
   transactions.push({
     id: generateID(),
     name: transactionName,
-    amount: Number(transactionAmount)
+    amount: Number(transactionAmount),
+    IsInvestment
   })
 }
 
 const cleanInputs = () => {
   inputTransactionName.value = ""
   inputTransactionAmount.value = ""
+  inputIsInvestment.checked = false;
 }
 
 const handleFormSubmit = event => {
@@ -124,6 +156,7 @@ const handleFormSubmit = event => {
 
   const transactionName = inputTransactionName.value.trim()
   const transactionAmount = inputTransactionAmount.value.trim()
+  const IsInvestment = inputIsInvestment.checked
   const isSomeInputEmpty = transactionName === "" || transactionAmount === ""
 
   if (isSomeInputEmpty) {
@@ -131,7 +164,7 @@ const handleFormSubmit = event => {
     return
   }
 
-  addToTransactionsArray(transactionName, transactionAmount)
+  addToTransactionsArray(transactionName, transactionAmount, IsInvestment)
   init()
   updateLocalStorage()
 

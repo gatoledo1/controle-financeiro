@@ -1,11 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,700;1,400&display=swap" rel="stylesheet');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
 :root {
-  --box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.12);
+  --box-shadow: 0 8px 15px -8px rgba(0, 0, 0, 0.12);
 }
 
 * {
   box-sizing: border-box;
-  letter-spacing: 1px;
+  letter-spacing: 0.4px;
+  scrollbar-width: thin;
+  scrollbar-color: #c4d5e6 #eef7ff;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(117, 117, 117, 0.09);
+}
+*::-webkit-scrollbar-thumb{
+  background: rgba(74, 102, 130, 0.3);
+  border-radius: 10px;
+}
+*::-webkit-scrollbar {
+  width: 6px;
 }
 
 @media (prefers-color-scheme: light) {
@@ -54,7 +68,7 @@ body {
   justify-content: center;
   min-height: 100vh;
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   overflow: auto;
 }
 
@@ -66,7 +80,7 @@ body {
 }
 
 .container + .container {
-  margin: 10px auto 120px auto;
+  margin: 10px auto 140px auto;
 }
 
 .none {
@@ -76,7 +90,7 @@ body {
 #balance {
   margin: 0;
   color: var(--h1);
-  font-size: 17px;
+  font-size: 16px;
   margin: 5px 0;
 }
 
@@ -96,15 +110,15 @@ h3 {
 h4 {
   color: var(--h2);
   margin: 0;
-  text-transform: uppercase;
   font-size: 13px;
 }
 
 .inc-exp-container {
   background-color: var(--white);
-  box-shadow: var(--box-shadow);
+  box-shadow: 0 -2px 15px 0px rgba(0, 0, 0, 0.1);
   padding: 10px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   margin: 20px 0 0;
   position: fixed;
@@ -112,14 +126,24 @@ h4 {
   left: 0;
   width: 100%;
   z-index: 10;
+  gap: 10px 0;
 }
 
-.inc-exp-container>div {
+.inc-exp-container>div:not(div:first-child) {
   flex: 1;
   text-align: center;
 }
 
-.inc-exp-container>div:nth-child(2) {
+.inc-exp-container>div:first-child {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--border);
+}
+
+.inc-exp-container>div:nth-child(3) {
   border-left: 1px solid var(--border);
   border-right: 1px solid var(--border)
 }
@@ -143,6 +167,11 @@ h4 {
   font-weight: bold;
 }
 
+.money.invest {
+  color: #9f58f6;
+  font-weight: bold;
+}
+
 .form-control {
   margin-bottom: 25px;
 }
@@ -151,6 +180,12 @@ label {
   display: inline-block;
   margin: 10px 0;
   color: var(--h2);
+}
+
+small:not(label small) {
+  color: var(--h2);
+  display: block;
+  font-size: 11px;
 }
 
 input[type='text'], input[type='number'] {
@@ -200,6 +235,7 @@ input[type='text']::placeholder, input[type='number']::placeholder {
   background-color: var(--white);
   box-shadow: var(--box-shadow);
   color: var(--li);
+  font-weight: 600;
   display: flex;
   justify-content: space-between;
   position: relative;
@@ -218,11 +254,16 @@ input[type='text']::placeholder, input[type='number']::placeholder {
   color: #e74c3c;
 }
 
+.transactions li.invest {
+  background: rgb(0 138 255 / 15%);
+  color: #008aff;
+}
+
 .delete-btn {
   cursor: pointer;
-  background-color: var(--delete);
+  background-color: rgba(0, 0, 0, 0.1);
   border: 0;
-  color: var(--txt-btn-delete);
+  color: #fff;
   font-size: 20px;
   line-height: 20px;
   height: 38px;
@@ -240,16 +281,13 @@ input[type='text']::placeholder, input[type='number']::placeholder {
 }*/
 
 @media (max-width: 340px){
-  .inc-exp-container {
-    flex-wrap: wrap;
-  }
   .inc-exp-container>div {
     flex: auto;
   }
-  .inc-exp-container>div:not(:last-child) {
+  /*.inc-exp-container>div:not(:last-child) {
     text-align: center;
     width: 50%;
-  }
+  } */
   .inc-exp-container>div:last-child {
     width: 100%;
     text-align: center;
