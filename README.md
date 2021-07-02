@@ -1,20 +1,18 @@
-# Controle de despesas
+# 💰Controle de despesas v1.0
 Controle financeiro: Inserção e remoção de débitos e saldos
 
 JavaScript puro, aplicação leve
 
 Projeto Web disponível em <a hreff="https://gatoledo.com/controle-financeiro/" target="_blank">https://gatoledo.com/controle-financeiro/</a>
 
-Quer instalar um APK do projeto?
+# 📲PWA: Instale no seu desktop ou no seu celular android
+ - Android: "adicionar atalho na tela inicial"; 
+ - Desktop: icone instalar, ao lado do icone de favoritar.
 
-https://s3.amazonaws.com/gonativeio/static/60d33e994aaed24550c7e206/app-release.apk - WPA do GoNative
-
-Codepen: https://codepen.io/gatoledo1/pen/jOBjYgp
+Codepen: v0.5 https://codepen.io/gatoledo1/pen/jOBjYgp
 
 <div>
-<img src="https://gatoledo.com/controle-financeiro/controle-despesas-light.jpg?v=2406" width="200" />
+<img src="https://gatoledo.com/controle-financeiro/img/controle-despesas-light.jpg?v=0207" width="250" />
 &nbsp; &nbsp;
-<img src="https://gatoledo.com/controle-financeiro/controle-despesas-dark.jpg?v=2406" width="200" />
-  &nbsp; &nbsp;
-<img src="https://gatoledo.com/controle-financeiro/grafico-despesas-dark.jpg?v=2406" width="200" />
+<img src="https://gatoledo.com/controle-financeiro/img/controle-despesas-dark.jpg?v=0207" width="250" />
 </div>
