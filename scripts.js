@@ -7,6 +7,7 @@ const form = document.querySelector("#form")
 const inputTransactionName = document.querySelector("#text")
 const inputTransactionAmount = document.querySelector("#amount")
 const inputIsInvestment = document.querySelector("#isInvestment")
+const inputNotCount = document.querySelector("#notCount")
 const body = document.querySelector("body")
 const chart = document.querySelector("#chart")
 
@@ -65,10 +66,11 @@ const getExpenses = (transactionsIsInvestment, transactionsAmounts) => {
 
 }
 
-const getIncomes = (transactionsIsInvestment, transactionsAmounts) => {
+const getIncomes = (transactionsIsInvestment, transactionsIsNotCount, transactionsAmounts) => {
   let investiment = transactionsIsInvestment[transactionsIsInvestment.length - 1]
+  let notCount = transactionsIsNotCount[transactionsIsNotCount.length - 1]
 
-  if (investiment == true) {
+  if (investiment == true || notCount == true) {
     return transactionsAmounts.filter(value => value > 0).reduce((accumulator) => accumulator).toFixed(2)
   } else {
     return transactionsAmounts.filter(value => value > 0).reduce((accumulator, value) => accumulator + value, 0).toFixed(2)
@@ -82,10 +84,11 @@ const getTotal = (transactionsAmounts) =>
 
 const updateBalanceValues = () => {
   const transactionsIsInvestment = transactions.map(({ IsInvestment }) => IsInvestment)
+  const transactionsIsNotCount = transactions.map(({ IsNotCount }) => IsNotCount)
   const transactionsAmounts = transactions.map(({ amount }) => amount)
   const invest = getInvests(transactionsIsInvestment, transactionsAmounts)
   const total = getTotal(transactionsAmounts)
-  const income = getIncomes(transactionsIsInvestment, transactionsAmounts)
+  const income = getIncomes(transactionsIsInvestment, transactionsIsNotCount, transactionsAmounts)
   const expense = getExpenses(transactionsIsInvestment, transactionsAmounts)
 
   balanceDisplay.textContent = `R$ ${total}`
@@ -136,12 +139,13 @@ const updateLocalStorage = () => {
 
 const generateID = () => Math.round(Math.random() * 1000)
 
-const addToTransactionsArray = (transactionName, transactionAmount, IsInvestment) => {
+const addToTransactionsArray = (transactionName, transactionAmount, IsInvestment, IsNotCount) => {
   transactions.push({
     id: generateID(),
     name: transactionName,
     amount: Number(transactionAmount),
-    IsInvestment
+    IsInvestment,
+    IsNotCount
   })
 }
 
@@ -149,6 +153,7 @@ const cleanInputs = () => {
   inputTransactionName.value = ""
   inputTransactionAmount.value = ""
   inputIsInvestment.checked = false;
+  inputNotCount.checked = false;
 }
 
 const handleFormSubmit = event => {
@@ -157,6 +162,7 @@ const handleFormSubmit = event => {
   const transactionName = inputTransactionName.value.trim()
   const transactionAmount = inputTransactionAmount.value.trim()
   const IsInvestment = inputIsInvestment.checked
+  const IsNotCount = inputNotCount.checked
   const isSomeInputEmpty = transactionName === "" || transactionAmount === ""
 
   if (isSomeInputEmpty) {
@@ -164,7 +170,7 @@ const handleFormSubmit = event => {
     return
   }
 
-  addToTransactionsArray(transactionName, transactionAmount, IsInvestment)
+  addToTransactionsArray(transactionName, transactionAmount, IsInvestment, IsNotCount)
   init()
   updateLocalStorage()
 

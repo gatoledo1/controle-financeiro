@@ -4,8 +4,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./styles.css?v=2.0" />
-  <link rel="manifest" href="./manifest.json?v=1.0.1" />
+  <!-- ios support -->
+  <link rel="apple-touch-icon" href="./icon/icon-money@1x.png" />
+  <link rel="apple-touch-icon" href="./icon/icon-money@2x.png" />
+  <link rel="apple-touch-icon" href="./icon/icon-money@3x.png" />
+  <link rel="apple-touch-icon" href="./icon/icon-money@4x.png" />
+  <link rel="apple-touch-icon" href="./icon/icon-money@5x.png" />
+  <link rel="apple-touch-icon" href="./icon/icon-money@6x.png" />
+  <link rel="apple-touch-icon" href="./icon/icon-money@7x.png" />
+  <meta name="apple-mobile-web-app-capacity" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="FinanControl">
+  <meta name="theme-color" content="#3367D6" />
+  <link rel="shortcut icon" href="./icon/icon-money@1x.png">
+  <link rel="stylesheet" href="./styles.css?v=06072021-4" />
+  <link rel="manifest" href="./manifest.json?v=1.0.4" />
   <title>Controle de despesas</title>
 </head>
 
@@ -23,28 +36,43 @@
 
     <ul id="transactions" class="transactions"></ul>
 
-    <h3>Adicionar transação</h3>
+    <h3 style="margin-bottom: 50px;">Adicionar transação</h3>
 
     <form id="form">
       <div class="form-control">
-        <label for="text">Nome</label>
-        <input autofocus type="text" id="text" placeholder="Nome da transação" autocomplete="off" />
+        <input autofocus class="input-effect" type="text" id="text" autocomplete="off"
+          placeholder="Nome da transação" />
+        <span class="focus-border">
+          <i></i>
+        </span>
+      </div>
+
+      <p>(- Despesas, + Receitas)</p>
+      <div class="input-group">
+        <div class="form-control" style="max-width: 47%">
+          <input type="text" class="input-effect" id="amount" autocomplete="off" placeholder="Valor"
+            oninput="this.value = this.value.replace(/[^0-9.-]/g, '').replace(/(\..*)\./g, '$1');" />
+          <span class="focus-border">
+            <i></i>
+          </span>
+        </div>
+
+        <div class="form-control checkbox">
+          <input type="checkbox" id="notCount" value="notCount" style="transform: scale(1.3)" />
+          <label for="notCount" style="font-size: 11px; color: #9f58f6;">
+            Não somar à receita
+          </label>
+        </div>
       </div>
 
       <div class="form-control">
-        <label for="amount">Valor
-          <small>(- Despesas, + Receitas)</small><br />
+        <input type="checkbox" id="isInvestment" value="isInvestment" style="transform: scale(1.5)" />
+        <label for="isInvestment" style="font-size: 13px;color: var(--h2);margin-bottom: 15px;display: inline-block;">
+          Poupança / investimento?
         </label>
-        <input type="text" id="amount" placeholder="Valor da transação" autocomplete="off"
-          oninput="this.value = this.value.replace(/[^0-9.-]/g, '').replace(/(\..*)\./g, '$1');" />
 
-      </div>
-
-      <small>Poupança conta apenas como saldo e gráfico</small>
-      <div class="form-control">
-        <input type="checkbox" id="isInvestment" value="isInvestment" />
-        <label for="isInvestment" style="font-size: 13px;">Poupança/investimento?</label>
-        <small>use (-) para inserir na poupança a partir do saldo</small>
+        <small>Poupança conta apenas como saldo e gráfico</small>
+        <small>Use (-) para inserir na poupança a partir do saldo</small>
       </div>
 
 
@@ -77,7 +105,7 @@
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
-  <script src="scripts.js?v=02072021"></script>
+  <script src="scripts.js?v=1.0.11"></script>
 
 </body>
 
