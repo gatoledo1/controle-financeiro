@@ -9,6 +9,12 @@
   letter-spacing: 0.4px;
   scrollbar-width: thin;
   scrollbar-color: #c4d5e6 #eef7ff;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none; /* iOS Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently */
 }
 
 *::-webkit-scrollbar-track {
@@ -36,7 +42,7 @@
     --li: #333;
     --txt-btn-delete: #e74c3c;
     --delete: #ffe0e0;
-    --input: #868585;
+    --input: #aaa;
     --btn-dark: #868585;
   }
 }
@@ -55,7 +61,7 @@
     --li: #333;
     --delete: #e74c3c;
     --txt-btn-delete: #ffe0e0;
-    --input: #cccccc;
+    --input: #92a2bb;
     --btn-dark: #fff;
   }
 }
@@ -89,7 +95,7 @@ body {
 
 #balance {
   margin: 0;
-  color: var(--h1);
+  color: #9f58f6;
   font-size: 16px;
   margin: 5px 0;
 }
@@ -113,13 +119,18 @@ h4 {
   font-size: 13px;
 }
 
+p {
+  color: var(--btn-dark);
+  font-size: 13px;
+}
+
 .inc-exp-container {
   background-color: var(--white);
   box-shadow: 0 -2px 15px 0px rgba(0, 0, 0, 0.1);
   padding: 10px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin: 20px 0 0;
   position: fixed;
   bottom: 0;
@@ -129,23 +140,26 @@ h4 {
   gap: 10px 0;
 }
 
-.inc-exp-container>div:not(div:first-child) {
-  flex: 1;
+.inc-exp-container div:not(div:first-child) {
+  flex: 1 !important;
   text-align: center;
+  width: 33% !important;
 }
 
-.inc-exp-container>div:first-child {
+.inc-exp-container div:first-child {
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   padding-bottom: 5px;
+  gap: 25px;
   border-bottom: 1px solid var(--border);
 }
 
-.inc-exp-container>div:nth-child(3) {
+.inc-exp-container div:nth-child(3) {
   border-left: 1px solid var(--border);
-  border-right: 1px solid var(--border)
+  border-right: 1px solid var(--border);
+  width: 33%;
 }
 
 /*.inc-exp-container>div:first-of-type {
@@ -168,40 +182,96 @@ h4 {
 }
 
 .money.invest {
-  color: #9f58f6;
+  color: #008aff;
   font-weight: bold;
 }
 
-.form-control {
-  margin-bottom: 25px;
+:focus {
+  outline: none;
 }
 
-label {
-  display: inline-block;
-  margin: 10px 0;
-  color: var(--h2);
+.form-control {
+  position: relative;
+  margin-bottom: 35px;
+}
+
+.form-control.checkbox {
+  background: rgb(159, 88, 246, 0.1);
+  padding: 13px 12px;
+  border-radius: 4px;
 }
 
 small:not(label small) {
   color: var(--h2);
   display: block;
+  line-height: 20px;
   font-size: 11px;
 }
 
-input[type='text'], input[type='number'] {
-  border: none;
-  box-shadow: var(--box-shadow);
-  display: block;
-  font-size: 16px;
-  padding: 13px;
+input[type="text"] {
+  font: 15px/24px "Lato", Arial, sans-serif;
+  color: var(--btn-dark);
   width: 100%;
-  background-color: var(--white);
-  color: var(--h2);
-  outline: none;
+  box-sizing: border-box;
+  letter-spacing: 1px;
 }
 
-input[type='text']::placeholder, input[type='number']::placeholder {
-  color: var(--input);
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.input-effect {
+  border: 0;
+  padding: 10px;
+  border: 1px solid var(--input);
+  background-color: transparent;
+}
+
+.input-effect ~ .focus-border:before,
+.input-effect ~ .focus-border:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #3399ff;
+  transition: 0.5s;
+}
+.input-effect ~ .focus-border:after {
+  top: auto;
+  bottom: 0;
+  left: auto;
+  right: 0;
+}
+.input-effect ~ .focus-border i:before,
+.input-effect ~ .focus-border i:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 0;
+  background-color: #3399ff;
+  transition: 0.6s;
+}
+.input-effect ~ .focus-border i:after {
+  left: auto;
+  right: 0;
+  top: auto;
+  bottom: 0;
+}
+.input-effect:focus ~ .focus-border:before,
+.input-effect:focus ~ .focus-border:after {
+  width: 100%;
+  transition: 0.5s;
+}
+.input-effect:focus ~ .focus-border i:before,
+.input-effect:focus ~ .focus-border i:after {
+  height: 100%;
+  transition: 0.6s;
 }
 
 .btn {
@@ -279,6 +349,12 @@ input[type='text']::placeholder, input[type='number']::placeholder {
 /*.transactions li:hover .delete-btn {
   opacity: 1;
 }*/
+
+.add-button {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+}
 
 @media (max-width: 340px){
   .inc-exp-container>div {
