@@ -85,8 +85,8 @@ body {
   max-width: 390px;
 }
 
-.container:nth-child(5) {
-  margin: 10px auto 90px auto;
+.container:nth-child(6) {
+  margin: 10px auto 60px auto;
 }
 
 .none {
@@ -104,6 +104,7 @@ h2 {
   font-size: 25px;
   font-weight: bold;
   color: var(--h2);
+  margin-bottom: 0;
 }
 
 h3 {
@@ -122,6 +123,10 @@ h4 {
 p {
   color: var(--btn-dark);
   font-size: 13px;
+}
+
+#date-print {
+  display: none;
 }
 
 .inc-exp-container {
@@ -287,6 +292,7 @@ input[type="text"] {
   padding: 10px;
   width: 100%;
   font-weight: bold;
+  text-align: center;
 }
 
 .btn:focus, .delete-btn:focus {
@@ -297,7 +303,7 @@ input[type="text"] {
   list-style-type: none;
   padding-left: 28px;
   margin-bottom: 40px;
-  max-height: 280px;
+  max-height: 300px;
   overflow: auto;
 }
 
@@ -330,7 +336,7 @@ input[type="text"] {
 }
 
 .transactions li.justTotal {
-  background: rgb(159, 88, 246, 0.14);
+  background: rgb(159, 88, 246, 0.1);
   color: #9f58f6;
 }
 
@@ -378,4 +384,21 @@ input[type="text"] {
     border-left: 1px solid var(--border);
     border-right: none;
   }
+}
+
+@media print {
+
+  .transactions {
+    max-height: 100%;
+    overflow: initial;
+  }
+
+  .container:nth-child(6) {
+    display: none;
+  }
+
+  #date-print {
+    display: block;
+  }
+  
 }
