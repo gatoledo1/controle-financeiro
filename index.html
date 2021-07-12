@@ -17,13 +17,15 @@
   <meta name="apple-mobile-web-app-title" content="FinanControl">
   <meta name="theme-color" content="#3367D6" />
   <link rel="shortcut icon" href="./icon/icon-money@1x.png">
-  <link rel="stylesheet" href="./styles.css?v=1207" />
+  <link rel="stylesheet" href="./styles.css?v=1207-2" />
   <link rel="manifest" href="./manifest.json?v=1.0.4" />
   <title>Controle de despesas</title>
 </head>
 
 <body>
   <h2>Controle de despesas</h2>
+
+  <p id="date-print"></p>
 
   <div class="container">
     <h3>Gráfico do saldo</h3>
@@ -98,12 +100,15 @@
 
     </form>
 
+    <a id="download" class="btn"
+      style="background-color: rgba(0,138,255, 0.1); color: #3399ff; margin-top: 50px; ">Gerar PDF</a>
+
   </div>
 
-  <p>By Gabriel Toledo | 2021</p>
+  <p>Gabriel Toledo | 2021</p>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
-  <script src="scripts.js?v=1207"></script>
+  <script src="scripts.js?v=1207-4"></script>
 
 </body>
 

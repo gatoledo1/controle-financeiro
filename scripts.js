@@ -28,8 +28,8 @@ const addTransactionIntoDom = ({ amount, name, id, IsInvestment, IsNotCount }) =
   const operator = amount < 0 ? "-" : "+"
   if (IsInvestment == true) var CSSClass = "invest"
   if (IsNotCount == true) var CSSClass = "justTotal"
-  if (amount > 0 && IsInvestment == false && IsNotCount == false) var CSSClass = "plus"
-  if (amount < 0 && IsInvestment == false && IsNotCount == false) var CSSClass = "minus"
+  if (amount > 0 && IsInvestment != true && IsNotCount != true) var CSSClass = "plus"
+  if (amount < 0 && IsInvestment != true && IsNotCount != true) var CSSClass = "minus"
   const amountWithoutOperator = Math.abs(amount)
   const li = document.createElement("li")
 
@@ -82,7 +82,7 @@ const getExpenses = (transactionsIsInvestment, transactionsAmounts) => {
 const getIncomes = (transactionsIsInvestment, transactionsIsNotCount, transactionsAmounts) => {
   let incomeT = []
   for (let index = 0; index < transactionsIsNotCount.length; index++) {
-    if (transactionsIsInvestment[index] == false && transactionsIsNotCount[index] == false) {
+    if (transactionsIsInvestment[index] != true && transactionsIsNotCount[index] != true) {
       incomeT = [...incomeT, transactionsAmounts[index]]
     }
   }
@@ -121,7 +121,7 @@ const updateBalanceValues = () => {
     chart.classList.remove("none")
 
     let xValues = ["Saldo", "Despesas", "Investimentos"];
-    let yValues = [total, expense, invest];
+    let yValues = [total, expense, Math.abs(invest)];
     let barColors = ["#9f58f6", "#e74c3c", "#008aff"];
 
     new Chart("chart", {
@@ -192,6 +192,16 @@ const handleFormSubmit = event => {
 }
 
 form.addEventListener("submit", handleFormSubmit)
+
+/* ======== DATE TO PRINT ========= */
+let data = new Date()
+let dataFormatada = ((data.getDate())) + "/" + ((data.getMonth() + 1)) + "/" + data.getFullYear()
+document.querySelector("#date-print").innerHTML = `Data: ${dataFormatada}`
+
+const downloadPDF = document.querySelector("#download")
+downloadPDF.addEventListener("click", () => {
+  window.print()
+})
 
 
 /* ======== Chamada PWA ========= */
