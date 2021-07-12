@@ -17,7 +17,7 @@
   <meta name="apple-mobile-web-app-title" content="FinanControl">
   <meta name="theme-color" content="#3367D6" />
   <link rel="shortcut icon" href="./icon/icon-money@1x.png">
-  <link rel="stylesheet" href="./styles.css?v=06072021-4" />
+  <link rel="stylesheet" href="./styles.css?v=1207" />
   <link rel="manifest" href="./manifest.json?v=1.0.4" />
   <title>Controle de despesas</title>
 </head>
@@ -31,13 +31,31 @@
   </div>
 
   <div class="container">
-
     <h3>Transações</h3>
-
     <ul id="transactions" class="transactions"></ul>
+  </div>
 
+  <div class="inc-exp-container">
+    <div>
+      <h4>Poupança / Investimentos</h4>
+      <p id="invest" class="money invest">+ R$0.00</p>
+    </div>
+    <div>
+      <h4>Receitas</h4>
+      <p id="money-plus" class="money plus">+ R$0.00</p>
+    </div>
+    <div>
+      <h4>Despesas</h4>
+      <p id="money-minus" class="money minus">- R$0.00</p>
+    </div>
+    <div>
+      <h4>Saldo atual</h4>
+      <h1 id="balance" class="balance">R$ 0.00</h1>
+    </div>
+  </div>
+
+  <div class="container">
     <h3 style="margin-bottom: 50px;">Adicionar transação</h3>
-
     <form id="form">
       <div class="form-control">
         <input autofocus class="input-effect" type="text" id="text" autocomplete="off"
@@ -80,32 +98,12 @@
 
     </form>
 
-    <div class="inc-exp-container">
-      <div>
-        <h4>Poupança / Investimentos</h4>
-        <p id="invest" class="money invest">+ R$0.00</p>
-      </div>
-
-      <div>
-        <h4>Receitas</h4>
-        <p id="money-plus" class="money plus">+ R$0.00</p>
-      </div>
-
-      <div>
-        <h4>Despesas</h4>
-        <p id="money-minus" class="money minus">- R$0.00</p>
-      </div>
-
-      <div>
-        <h4>Saldo atual</h4>
-        <h1 id="balance" class="balance">R$ 0.00</h1>
-      </div>
-    </div>
-
   </div>
 
+  <p>By Gabriel Toledo | 2021</p>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
-  <script src="scripts.js?v=1.0.11"></script>
+  <script src="scripts.js?v=1207"></script>
 
 </body>
 

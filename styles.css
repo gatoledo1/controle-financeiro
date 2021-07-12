@@ -85,8 +85,8 @@ body {
   max-width: 390px;
 }
 
-.container + .container {
-  margin: 10px auto 140px auto;
+.container:nth-child(5) {
+  margin: 10px auto 90px auto;
 }
 
 .none {
@@ -128,11 +128,11 @@ p {
   background-color: var(--white);
   box-shadow: 0 -2px 15px 0px rgba(0, 0, 0, 0.1);
   padding: 10px;
+  max-width: 400px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  margin: 20px 0 0;
-  position: fixed;
+  position: sticky;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -297,7 +297,7 @@ input[type="text"] {
   list-style-type: none;
   padding-left: 28px;
   margin-bottom: 40px;
-  max-height: 230px;
+  max-height: 280px;
   overflow: auto;
 }
 
@@ -327,6 +327,11 @@ input[type="text"] {
 .transactions li.invest {
   background: rgb(0 138 255 / 15%);
   color: #008aff;
+}
+
+.transactions li.justTotal {
+  background: rgb(159, 88, 246, 0.14);
+  color: #9f58f6;
 }
 
 .delete-btn {

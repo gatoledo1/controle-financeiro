@@ -23,12 +23,13 @@ const removeTransaction = ID => {
   init()
 }
 
-const addTransactionIntoDom = ({ amount, name, id, IsInvestment }) => {
+const addTransactionIntoDom = ({ amount, name, id, IsInvestment, IsNotCount }) => {
 
   const operator = amount < 0 ? "-" : "+"
   if (IsInvestment == true) var CSSClass = "invest"
-  if (amount > 0 && IsInvestment == false) var CSSClass = "plus"
-  if (amount < 0 && IsInvestment == false) var CSSClass = "minus"
+  if (IsNotCount == true) var CSSClass = "justTotal"
+  if (amount > 0 && IsInvestment == false && IsNotCount == false) var CSSClass = "plus"
+  if (amount < 0 && IsInvestment == false && IsNotCount == false) var CSSClass = "minus"
   const amountWithoutOperator = Math.abs(amount)
   const li = document.createElement("li")
 
@@ -55,6 +56,18 @@ function getInvests(transactionsIsInvestment, transactionsAmounts) {
     .toFixed(2)
 }
 
+function getNotCount(transactionsIsNotCount, transactionsAmounts) {
+  var arrayJustTotal = []
+  for (let index = 0; index < transactionsIsNotCount.length; index++) {
+    if (transactionsIsNotCount[index] == true) {
+      arrayJustTotal = [...arrayJustTotal, transactionsAmounts[index]]
+    }
+  }
+
+  return arrayJustTotal.reduce((accumulator, arrayJustTotal) => accumulator + arrayJustTotal, 0)
+    .toFixed(2)
+}
+
 const getExpenses = (transactionsIsInvestment, transactionsAmounts) => {
   let expenseT = []
   for (let index = 0; index < transactionsIsInvestment.length; index++) {
@@ -67,14 +80,14 @@ const getExpenses = (transactionsIsInvestment, transactionsAmounts) => {
 }
 
 const getIncomes = (transactionsIsInvestment, transactionsIsNotCount, transactionsAmounts) => {
-  let investiment = transactionsIsInvestment[transactionsIsInvestment.length - 1]
-  let notCount = transactionsIsNotCount[transactionsIsNotCount.length - 1]
-
-  if (investiment == true || notCount == true) {
-    return transactionsAmounts.filter(value => value > 0).reduce((accumulator) => accumulator).toFixed(2)
-  } else {
-    return transactionsAmounts.filter(value => value > 0).reduce((accumulator, value) => accumulator + value, 0).toFixed(2)
+  let incomeT = []
+  for (let index = 0; index < transactionsIsNotCount.length; index++) {
+    if (transactionsIsInvestment[index] == false && transactionsIsNotCount[index] == false) {
+      incomeT = [...incomeT, transactionsAmounts[index]]
+    }
   }
+  return incomeT.filter(value => value > 0).reduce((accumulator, value) => accumulator + value, 0).toFixed(2)
+
 
 }
 
@@ -87,6 +100,7 @@ const updateBalanceValues = () => {
   const transactionsIsNotCount = transactions.map(({ IsNotCount }) => IsNotCount)
   const transactionsAmounts = transactions.map(({ amount }) => amount)
   const invest = getInvests(transactionsIsInvestment, transactionsAmounts)
+  const justTotal = getNotCount(transactionsIsNotCount, transactionsAmounts)
   const total = getTotal(transactionsAmounts)
   const income = getIncomes(transactionsIsInvestment, transactionsIsNotCount, transactionsAmounts)
   const expense = getExpenses(transactionsIsInvestment, transactionsAmounts)
@@ -106,9 +120,9 @@ const updateBalanceValues = () => {
 
     chart.classList.remove("none")
 
-    let xValues = ["Receita", "Despesas", "Investimentos"];
-    let yValues = [income, expense, invest];
-    let barColors = ["#2ecc71", "#e74c3c", "#008aff"];
+    let xValues = ["Saldo", "Despesas", "Investimentos"];
+    let yValues = [total, expense, invest];
+    let barColors = ["#9f58f6", "#e74c3c", "#008aff"];
 
     new Chart("chart", {
       type: "doughnut",
