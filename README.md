@@ -12,6 +12,7 @@ Projeto Web disponível em <a href="https://gatoledo.com/controle-financeiro/" t
 - Manipulação de poupança
 - Gráfico representando os calculos atuais;
 - Adição de receita para descontar de um débito;
+- Botão para gerar PDF dos dados, na impressão;
 
 # 📲PWA: Instale no seu desktop ou no seu celular android
  - Android: "adicionar atalho na tela inicial"; 
