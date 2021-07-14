@@ -13,6 +13,8 @@ Projeto Web disponível em <a href="https://gatoledo.com/controle-financeiro/" t
 - Gráfico representando os calculos atuais;
 - Adição de receita para descontar de um débito;
 - Botão para gerar PDF dos dados, na impressão;
+- Speedometer do saldo disponivel
+- Alerta se gastar mais de 80% da receita
 
 # 📲PWA: Instale no seu desktop ou no seu celular android
  - Android: "adicionar atalho na tela inicial"; 
