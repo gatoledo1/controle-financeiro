@@ -17,7 +17,7 @@
   <meta name="apple-mobile-web-app-title" content="FinanControl">
   <meta name="theme-color" content="#3367D6" />
   <link rel="shortcut icon" href="./icon/icon-money@1x.png">
-  <link rel="stylesheet" href="./styles.css?v=1207-2" />
+  <link rel="stylesheet" href="./styles.css?v=1407" />
   <link rel="manifest" href="./manifest.json?v=1.0.4" />
   <title>Controle de despesas</title>
 </head>
@@ -28,6 +28,21 @@
   <p id="date-print"></p>
 
   <div class="container">
+    <h3>Nível de risco</h3>
+    <div class="wrapper">
+      <div class="gauge">
+        <div class="slice-colors">
+          <div class="st slice-item"></div>
+          <div class="st slice-item"></div>
+          <div class="st slice-item"></div>
+          <div class="st slice-item"></div>
+          <div class="st slice-item"></div>
+        </div>
+        <div class="needle"></div>
+        <div class="gauge-center"></div>
+      </div>
+    </div>
+
     <h3>Gráfico do saldo</h3>
     <canvas id="chart" style="width:100%;"></canvas>
   </div>
@@ -107,8 +122,14 @@
 
   <p>Gabriel Toledo | 2021</p>
 
+  <div class="modal">
+    <div class="toast-content">
+
+    </div>
+  </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
-  <script src="scripts.js?v=1207-4"></script>
+  <script src="scripts.js?v=1407"></script>
 
 </body>
 

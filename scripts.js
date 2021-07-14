@@ -10,6 +10,20 @@ const inputIsInvestment = document.querySelector("#isInvestment")
 const inputNotCount = document.querySelector("#notCount")
 const body = document.querySelector("body")
 const chart = document.querySelector("#chart")
+const speedometer = document.querySelector(".needle")
+const modalAlert = document.querySelector(".modal")
+const toastAlert = document.querySelector(".toast-content")
+
+const manipuleModal = (percent) => {
+  toastAlert.innerHTML = `<p>Cuidado!! Você ja gastou ${percent}% de sua renda</p>`
+  modalAlert.style.transform = "translate(0, 0)"
+  modalAlert.style.transition = "opacity 0.7s, transform 0.5s"
+  modalAlert.style.opacity = 1
+
+  setTimeout(() => {
+    modalAlert.style.transform = "translate(0, 110%)"
+  }, 5000);
+}
 
 const localStorageTransactions = JSON.parse(localStorage
   .getItem("transactions"))
@@ -52,7 +66,7 @@ function getInvests(transactionsIsInvestment, transactionsAmounts) {
     }
   }
 
-  return investiment.reduce((accumulator, investiment) => accumulator + investiment, 0)
+  return Math.abs(investiment.reduce((accumulator, investiment) => accumulator + investiment, 0))
     .toFixed(2)
 }
 
@@ -108,7 +122,7 @@ const updateBalanceValues = () => {
   balanceDisplay.textContent = `R$ ${total}`
   incomeDisplay.textContent = `R$ ${income}`
   expenseDisplay.textContent = `R$ ${expense}`
-  investDisplay.textContent = `R$ ${Math.abs(invest)}`
+  investDisplay.textContent = `R$ ${invest}`
 
   transactionsUl.scroll({ top: 2000, left: 0, behavior: 'smooth' });
 
@@ -117,6 +131,34 @@ const updateBalanceValues = () => {
     chart.classList.add("none")
 
   } else {
+
+    var expenseInvest = expense * 1 + invest * 1
+    var percent = ((expenseInvest / income) * 100).toFixed(1)
+    var countPercentReverse = 100.0 - percent
+    var available = `<p class='percent'>${countPercentReverse.toFixed(1)}%<span>Disponível</span></p>`
+
+    document.querySelector(".gauge-center").innerHTML = available
+
+    if (percent < 20.0) {
+      speedometer.style.transform = "rotate(10deg)"
+    }
+    else if (percent > 20.0 && percent < 40.0) {
+      speedometer.style.transform = "rotate(40deg)"
+    }
+    else if (percent > 40.0 && percent < 60.0) {
+      speedometer.style.transform = "rotate(105deg)"
+    }
+    else if (percent > 60.0 && percent < 80.0) {
+      speedometer.style.transform = "rotate(140deg)"
+    }
+    else if (percent > 80.0 && percent < 95.0) {
+      speedometer.style.transform = "rotate(160deg)"
+      manipuleModal(percent)
+    }
+    else if (percent > 95.0) {
+      speedometer.style.transform = "rotate(182deg)"
+      manipuleModal(percent)
+    }
 
     chart.classList.remove("none")
 
@@ -202,7 +244,6 @@ const downloadPDF = document.querySelector("#download")
 downloadPDF.addEventListener("click", () => {
   window.print()
 })
-
 
 /* ======== Chamada PWA ========= */
 if ("serviceWorker" in navigator) {
