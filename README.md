@@ -21,9 +21,11 @@ Projeto Web disponível em <a href="https://gatoledo.com/controle-financeiro/" t
  - Desktop: icone instalar, ao lado do icone de favoritar.
 
 <div>
-<img src="https://gatoledo.com/controle-financeiro/img/controle-despesas-light.jpg?v=1207" width="250" />
+<img src="https://gatoledo.com/controle-financeiro/img/controle-despesas-light.jpg?v=1407" width="250" />
 &nbsp; &nbsp;
-<img src="https://gatoledo.com/controle-financeiro/img/controle-despesas-dark.jpg?v=1207" width="250" />
+<img src="https://gatoledo.com/controle-financeiro/img/controle-despesas-dark.jpg?v=1407" width="252" />
+ &nbsp; &nbsp;
+<img src="https://gatoledo.com/controle-financeiro/img/controle-despesas-speedometer-dark.jpg?v=1407" width="330" />
 </div>
 
 
