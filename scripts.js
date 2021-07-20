@@ -134,8 +134,9 @@ const updateBalanceValues = () => {
 
     var expenseInvest = expense * 1 + invest * 1
     var percent = ((expenseInvest / income) * 100).toFixed(1)
-    var countPercentReverse = 100.0 - percent
-    var available = `<p class='percent'>${countPercentReverse.toFixed(1)}%<span>Disponível</span></p>`
+    var percent2 = (total * 100).toFixed(1)
+    let available = (percent2 / income).toFixed(1)
+    available = `<p class='percent'>${available}%<span>Disponível</span></p>`
 
     document.querySelector(".gauge-center").innerHTML = available
 
@@ -155,7 +156,7 @@ const updateBalanceValues = () => {
       speedometer.style.transform = "rotate(160deg)"
       manipuleModal(percent)
     }
-    else if (percent > 95.0) {
+    else if (percent > 95.0 && percent < 250.0) {
       speedometer.style.transform = "rotate(182deg)"
       manipuleModal(percent)
     }
