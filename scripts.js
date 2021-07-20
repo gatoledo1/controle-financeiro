@@ -133,9 +133,10 @@ const updateBalanceValues = () => {
   } else {
 
     var expenseInvest = expense * 1 + invest * 1
-    var percent = ((expenseInvest / income) * 100).toFixed(1)
+    var percent = ((expenseInvest / income) * 100).toFixed(1) //despesas e investimentos divididos pela receita
     var percent2 = (total * 100).toFixed(1)
-    let available = (percent2 / income).toFixed(1)
+    var available = (percent2 / income).toFixed(1) //saldo dividido pela receita
+    percent2 = 100 - available //Porcentagem de gastos
     available = `<p class='percent'>${available}%<span>Disponível</span></p>`
 
     document.querySelector(".gauge-center").innerHTML = available
@@ -154,11 +155,11 @@ const updateBalanceValues = () => {
     }
     else if (percent > 80.0 && percent < 95.0) {
       speedometer.style.transform = "rotate(160deg)"
-      manipuleModal(percent)
+      manipuleModal(percent2)
     }
     else if (percent > 95.0 && percent < 250.0) {
       speedometer.style.transform = "rotate(182deg)"
-      manipuleModal(percent)
+      manipuleModal(percent2)
     }
 
     chart.classList.remove("none")
