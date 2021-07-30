@@ -393,12 +393,30 @@ input[type="text"] {
     overflow: initial;
   }
 
+  .container {
+    max-width: 480px;
+  }
+
   .container:nth-child(6) {
     display: none;
   }
 
   #date-print {
     display: block;
+  }
+
+  .modal {
+    display: none;
+  }
+
+  .container-transactions {
+    order: 1;
+  }
+
+  .inc-exp-container {
+    position: relative;
+    order: 0;
+    margin: 35px 0 15px;
   }
   
 }
