@@ -21,46 +21,39 @@ export default defineConfig({
         orientation: "portrait-primary",
         icons: [
           {
-              "src": "./src/assets/icon/icon-money@1x.png",
+              "src": "src/assets/icon/icon-money@1x.png",
               "type": "image/png",
               "sizes": "42x42",
-              "purpose": "any maskable"
           },
           {
-              "src": "./src/assets/icon/icon-money@2x.png",
+              "src": "src/assets/icon/icon-money@2x.png",
               "type": "image/png",
               "sizes": "84x84",
-              "purpose": "any maskable"
           },
           {
-              "src": "./src/assets/icon/icon-money@3x.png",
+              "src": "src/assets/icon/icon-money@3x.png",
               "type": "image/png",
               "sizes": "126x126",
-              "purpose": "any maskable"
           },
           {
-              "src": "./src/assets/icon/icon-money@4x.png",
+              "src": "src/assets/icon/icon-money@4x.png",
               "type": "image/png",
               "sizes": "168x168",
-              "purpose": "any maskable"
           },
           {
-              "src": "./src/assets/icon/icon-money@5x.png",
+              "src": "src/assets/icon/icon-money@5x.png",
               "type": "image/png",
               "sizes": "336x336",
-              "purpose": "any maskable"
           },
           {
-              "src": "./src/assets/icon/icon-money@6x.png",
+              "src": "src/assets/icon/icon-money@6x.png",
               "type": "image/png",
               "sizes": "504x504",
-              "purpose": "any maskable"
           },
           {
-              "src": "./src/assets/icon/icon-money@7x.png",
+              "src": "src/assets/icon/icon-money@7x.png",
               "type": "image/png",
               "sizes": "512x512",
-              "purpose": "any maskable"
           }
         ]
       }

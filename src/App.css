@@ -80,6 +80,10 @@ body {
   overflow: auto;
 }
 
+.App {
+  margin-bottom: 2rem;
+}
+
 .container {
   margin: 10px auto;
   width: 100%;
@@ -381,12 +385,22 @@ input[type="text"] {
     overflow: initial;
   }
 
-  .container:nth-child(6) {
+  .container {
+    max-width: 480px;
+  }
+
+  .chart, .form, .print, .delete-btn, .btn {
     display: none;
   }
 
-  #date-print {
-    display: block;
+  .modal {
+    display: none;
+  }
+
+  .inc-exp-container {
+    position: relative;
+    order: 0;
+    margin: 35px 0 15px;
   }
   
 }
