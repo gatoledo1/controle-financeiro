@@ -50,6 +50,12 @@ function TransactionForm({ addTransaction, transactions }: Form) {
     <div className="container form">
       <h3 style={{ margin: '50px 0 20px' }}>Adicionar transação</h3>
       <form onSubmit={handleFormSubmit}>
+        <p>Selecione o tipo:</p>
+        <div style={{display: "flex", justifyContent: "space-between", gap: 6, marginBottom: 16}}>
+          <a onClick={() => setBalanceType("-")} className={balanceType == "-" ? "balance-btn btn-active minus" : "balance-btn"}>Despesa</a>
+          <a onClick={() => setBalanceType("+")} className={balanceType == "+" ? "balance-btn btn-active plus" : "balance-btn"}>Receita</a>
+          <a onClick={() => setIsNotCount(!isNotCount)} className={isNotCount ? "balance-btn btn-active justTotal" : "balance-btn"}>Apenas no saldo</a>
+        </div>
         <div className="form-control">
           <input
             autoFocus
@@ -61,15 +67,6 @@ function TransactionForm({ addTransaction, transactions }: Form) {
             value={transactionName}
             onChange={(e) => setTransactionName(e.target.value)}
           />
-          <span className="focus-border">
-            <i></i>
-          </span>
-        </div>
-        <p>Selecione o tipo:</p>
-        <div style={{display: "flex", justifyContent: "space-between", gap: 6, marginBottom: 16}}>
-          <a onClick={() => setBalanceType("-")} className={balanceType == "-" ? "balance-btn btn-active minus" : "balance-btn"}>Despesa</a>
-          <a onClick={() => setBalanceType("+")} className={balanceType == "+" ? "balance-btn btn-active plus" : "balance-btn"}>Receita</a>
-          <a onClick={() => setIsNotCount(!isNotCount)} className={isNotCount ? "balance-btn btn-active justTotal" : "balance-btn"}>Apenas no saldo</a>
         </div>
         <div className="margin-bottom-2">
           <div className="form-control">
@@ -86,9 +83,6 @@ function TransactionForm({ addTransaction, transactions }: Form) {
               value={transactionAmount}
               onValueChange={(value) => setTransactionAmount(value)}
             />
-            <span className="focus-border">
-              <i></i>
-            </span>
           </div>
         </div>
 
