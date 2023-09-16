@@ -47,7 +47,7 @@ function TransactionForm({ addTransaction, transactions }: Form) {
   };
 
   return (
-    <div className="container">
+    <div className="container form">
       <h3 style={{ margin: '50px 0 20px' }}>Adicionar transação</h3>
       <form onSubmit={handleFormSubmit}>
         <div className="form-control">
@@ -119,17 +119,6 @@ function TransactionForm({ addTransaction, transactions }: Form) {
 
         <button type="submit" className="btn">Adicionar</button>
       </form>
-      <a
-        id="download"
-        className="btn"
-        style={{
-          backgroundColor: 'rgba(0,138,255, 0.1)',
-          color: '#3399ff',
-          marginTop: '50px',
-        }}
-      >
-        Gerar PDF
-      </a>
     </div>
   );
 }

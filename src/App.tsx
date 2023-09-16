@@ -7,26 +7,17 @@ import TransactionForm from './components/Form';
 import { ReactChartJS } from './components/ReactApexChart';
 import Speedometer from './components/Speedometer';
 import { Transactions } from './types/transactions';
+import DataPrint from './components/DataPrint';
 
 function App() {
-  // let localStorageTransactions = localStorage.getItem("transactions")
-  // if(localStorageTransactions) {
-  //   localStorageTransactions = JSON.parse(localStorage.getItem("transactions") || "")
-  // }
-
-  // const [transactions, setTransactions] = useState(localStorageTransactions || []);
-
   const localStorageTransactions = localStorage.getItem("transactions")
-
   const dataTransactions: Array<Transactions> = localStorageTransactions && JSON.parse(localStorageTransactions) || []
-
   const [transactions, setTransactions] = useState<Array<Transactions>>(dataTransactions);
   const [total, setTotal] = useState('');
   const [income, setIncome] = useState(0);
   const [expense, setExpense] = useState(0);
   const [invest, setInvest] = useState(0);
 
-  
   useEffect(() => {
       const transactionAmounts = transactions.map(({ amount }) => amount);
 
@@ -54,8 +45,7 @@ function App() {
       setInvest(investAmount);
 
       localStorage.setItem("transactions", JSON.stringify(transactions));
-    
-      console.log(investAmount, notCountAmount, incomeAmount, expenseAmount)
+
   }, [transactions]);
 
   const addTransaction = (name: string, amount: number, IsInvestment: boolean, IsNotCount: boolean) => {
@@ -87,6 +77,7 @@ function App() {
       <TransactionList transactions={transactions} removeTransaction={removeTransaction} />
       <BalanceSummary total={total} income={income} expense={expense} invest={invest} />
       <TransactionForm addTransaction={addTransaction} transactions={transactions} />
+      <DataPrint />
     </div>
   );
 }

@@ -24,7 +24,7 @@ export function ReactChartJS({expense, invest, income}: Data) {
   };
 
   return (
-    <div className="container">
+    <div className="container chart">
       <h3>Gráfico do saldo</h3>
       <Doughnut data={data} />
     </div>

@@ -15,9 +15,9 @@ function TransactionList({ transactions, removeTransaction }: List) {
   }
 
   return (
-    <div className="container">
+    <div className="container transactions-list">
       <h3>Lista de transações</h3>
-      <ul id="transactions" className="transactions">
+      <ul className="transactions">
         {
           transactions?.length > 0 ? 
             transactions.map((transaction) => {
